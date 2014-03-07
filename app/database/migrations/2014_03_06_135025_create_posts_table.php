@@ -18,7 +18,7 @@ class CreatePostsTable extends Migration {
       $table->string('title')->unique();
       $table->string('content');
       $table->string('status');
-      $table->string('markdown');
+      $table->string('markdown')->nullable();
       $table->string('tags')->nullable();
       $table->timestamps();
     });
@@ -31,7 +31,7 @@ class CreatePostsTable extends Migration {
 	 */
 	public function down()
 	{
-    Schema::drop('users');
+    Schema::drop('posts');
 	}
 
 }
