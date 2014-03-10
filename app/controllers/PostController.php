@@ -50,10 +50,12 @@ class PostController extends \BaseController {
     $post = Post::where('id', $id)
       ->take(1)
       ->get();
+    $comments = Post::find(1)->comments;
 
     return Response::json(array(
       'error' => false,
-      'post' => $post->toArray()),
+      'post' => $post->toArray(),
+      'comments' => $comments->toArray()),
       200
     );
 	}
