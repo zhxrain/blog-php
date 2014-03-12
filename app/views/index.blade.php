@@ -11,13 +11,11 @@
 
 <!-- JS -->
 <!--script src="//ajax.googleapis.comom/ajax/libs/jquery/2.0.3/jquery.min.js"></script-->
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js"></script> <!-- load angular -->
 
 <!-- ANGULAR -->
 <!-- all angular resources will be loaded fontawesomerom the /public folder -->
-<script src="js/controllers/mainCtrl.js"><mainCtrl/script> <!-- load our controller -->
-<script src="js/services/CommenttService.js"></script> <!-- load our service -->
-<script src="js/app.js"></script> <!-- load our application -->
+{{ HTML::script('lib/angular.js') }}
+{{ HTML::script('js/app.js') }}
 
 </head>
 <!-- declare our angular app and controller -->
