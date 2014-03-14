@@ -19,6 +19,6 @@
 
 </head>
 <!-- declare our angular app and controller -->
-<body class="container" ng-app="blogApp" ng-controller="mainController">
+<body class="container" ng-app="blogApp">
 </body>
 </html>
