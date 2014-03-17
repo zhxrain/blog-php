@@ -1,24 +1,10 @@
-<!-- app/views/index.php -->
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Laravel and Angular Comment System</title>
-
-<!--    CSS -->
-<!--link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrapcdnap/3.1.0/css/bootstrap.min.css"--> <!-- load bootstrap via cdn -->
-<!--link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"--> <!-- load fontawesome -->
-
-<!-- JS -->
-<!--script src="//ajax.googleapis.comom/ajax/libs/jquery/2.0.3/jquery.min.js"></script-->
-
-<!-- ANGULAR -->
-<!-- all angular resources will be loaded fontawesomerom the /public folder -->
-{{ HTML::script('lib/angular.js') }}
-{{ HTML::script('js/app.js') }}
-
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="language" content="en" />
 </head>
-<!-- declare our angular app and controller -->
-<body class="container" ng-app="blogApp">
+<body>
+<h1>Zhxrain</h1>
 </body>
 </html>

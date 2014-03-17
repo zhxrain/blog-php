@@ -11,12 +11,6 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('index');
-});
+Route::get('/', 'HomeController@showIndex');
 
-Route::group(array('prefix' => 'api/v1'), function()
-{
-  Route::resource('post', 'PostController');
-});
+Route::resource('post', 'PostController');
