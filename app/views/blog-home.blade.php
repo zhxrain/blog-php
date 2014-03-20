@@ -44,7 +44,7 @@
 
                 <!-- blog entry -->
                 @foreach($posts as $post)
-                <h1><a href="#">{{ $post->title }}</a>
+                <h1><a href="/posts/{{ $post->id }}">{{ $post->title }}</a>
                 </h1>
                 <hr>
                 <p>
