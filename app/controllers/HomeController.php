@@ -17,7 +17,8 @@ class HomeController extends BaseController {
 
 	public function showIndex()
 	{
-		return View::make('index');
+    $posts = Post::paginate(2);
+		return View::make('blog-home', array('posts' => $posts));
 	}
 
 }

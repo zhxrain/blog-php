@@ -48,16 +48,18 @@ class PostController extends \BaseController {
 	{
 		//
     $post = Post::where('id', $id)
-      ->take(1)
-      ->get();
-    $comments = Post::find(1)->comments;
+      ->first();
+    $comments = Post::find($id)->comments;
 
+		return View::make('blog-post', array('post' => $post));
+    /*
     return Response::json(array(
       'error' => false,
       'post' => $post->toArray(),
       'comments' => $comments->toArray()),
       200
     );
+     */
 	}
 
 	/**

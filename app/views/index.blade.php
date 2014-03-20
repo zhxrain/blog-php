@@ -3,8 +3,11 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="language" content="en" />
+  {{ HTML::style("css/main.css")}}
 </head>
 <body>
+<div class="main">
 <h1>Zhxrain</h1>
+</div>
 </body>
 </html>

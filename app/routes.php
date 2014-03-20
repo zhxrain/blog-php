@@ -13,4 +13,4 @@
 
 Route::get('/', 'HomeController@showIndex');
 
-Route::resource('post', 'PostController');
+Route::resource('posts', 'PostController');

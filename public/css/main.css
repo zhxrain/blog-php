@@ -1,0 +1,7 @@
+.main {
+  width: 100%;
+  height: 100%;
+  background: -webkit-linear-gradient(top,#eaf6e6,#fff);
+  background: -moz-linear-gradient(top,#eaf6e6,#fff);
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#1471da, endColorstr=#1C85FB)";/*IE8+*/
+}
