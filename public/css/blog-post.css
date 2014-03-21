@@ -7,3 +7,25 @@ footer {
   text-align: center;
 }
 
+.act {
+  float: right;
+}
+
+.info {
+}
+
+.comment {
+  margin-top: 20px;
+}
+
+.author {
+  font-size: 16px;
+  color: blue;
+  display:inline;
+}
+
+.date {
+  margin-left: 20px;
+  position: relative;
+  display:inline;
+}

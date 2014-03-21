@@ -67,23 +67,54 @@
 
                 <!-- the comment box -->
                 <div class="well">
-                    <h4>Leave a Comment:</h4>
-                    <form role="form">
+                    <h4>留言:</h4>
+                    <form class="form-horizontal" role="form" action="/comments" method="POST">
+                        <input type="hidden" name="post_id" value={{ $post->id }}>
                         <div class="form-group">
-                            <textarea class="form-control" rows="3"></textarea>
+                            <label for="inputUsername" class="col-sm-2 control-label">昵称(必填):</label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control" name="author" id="inputUsername" placeholder="昵称" required>
+                            </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <div class="form-group">
+                            <label for="inputEmail" class="col-sm-2 control-label">Email:</label>
+                            <div class="col-sm-5">
+                                <input type="email" class="form-control" name="email" id="inputEmail" placeholder="Email">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputComment" class="col-sm-2 control-label">内容(必填):</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" name="content" id="inputComment" rows="5" required></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-primary">提交</button>
+                            </div>
+                        </div>
                     </form>
                 </div>
 
                 <hr>
 
                 <!-- the comments -->
+
+                <?php $count=1?>
                 @foreach( $post->comments as $comment)
-                <h3>{{ $comment->author }}
-                    <small>{{ $comment->created_at }}</small>
-                </h3>
-                <p>{{ $comment->content }}</p>
+                <div class="well">
+                  <div class="act">
+                    <a href="#">回复</a>｜<a href="#">引用</a>
+                  </div>
+                  <div class="info">
+                      <div class="author"> {{ $comment->author }} </div>
+                      <div class="date"> <small>{{ $comment->created_at }}|#{{ $count }}</small> </div>
+                  </div>
+                  <div class="comment">
+                    <p>{{ $comment->content }}</p>
+                  </div>
+                </div>
+                <?php $count++ ?>
                 @endforeach
 
             </div>

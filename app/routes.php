@@ -14,3 +14,4 @@
 Route::get('/', 'HomeController@showIndex');
 
 Route::resource('posts', 'PostController');
+Route::resource('comments', 'CommentController');
