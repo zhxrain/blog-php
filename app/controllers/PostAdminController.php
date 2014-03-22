@@ -1,6 +1,6 @@
 <?php
 
-class PostController extends \BaseController {
+class PostAdminController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -9,22 +9,17 @@ class PostController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
-    $posts = Post::paginate(2);
-		return View::make('blog-home', array('posts' => $posts));
-    /*
-    $posts = Post::all();
-    return Response::json(array(
-      'error' => false,
-      'posts' => $posts->toArray()),
-      200
-    );
-     */
-  }
+    if(Auth::check())
+    {
+      $posts = Post::paginate(2);
+      return View::make('index', array('posts' => $posts));
+    }
+    return Redirect::to("/admin/login");
+	}
 
-  /**
-   * Show the form for creating a new resource.
-   *
+	/**
+	 * Show the form for creating a new resource.
+	 *
 	 * @return Response
 	 */
 	public function create()
@@ -51,19 +46,6 @@ class PostController extends \BaseController {
 	public function show($id)
 	{
 		//
-    $post = Post::where('id', $id)
-      ->first();
-    $comments = Post::find($id)->comments;
-
-		return View::make('blog-post', array('post' => $post));
-    /*
-    return Response::json(array(
-      'error' => false,
-      'post' => $post->toArray(),
-      'comments' => $comments->toArray()),
-      200
-    );
-     */
 	}
 
 	/**
@@ -99,4 +81,26 @@ class PostController extends \BaseController {
 		//
 	}
 
+  public function login()
+  {
+    if(Auth::check())
+    {
+      return Redirect::to("admin");
+    }
+    else
+      return View::make('login');
+
+  }
+
+  public function postLogin()
+  {
+    $username = Input::get('username');
+    $password = Input::get('password');
+    if (Auth::attempt(array('name' => $username, 'password' => $password)))
+    {
+      return Redirect::intended('/');
+    }
+    return Redirect::to('admin/login')
+      ->with('error', "Oops! Username or password don't match");
+  }
 }
