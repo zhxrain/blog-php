@@ -19,3 +19,4 @@ Route::resource('comments', 'CommentController');
 Route::get('admin', 'PostAdminController@index');
 Route::get('admin/login', 'PostAdminController@login');
 Route::post('admin/login', 'PostAdminController@postLogin');
+Route::get('admin/editor/{id}', 'PostAdminController@showEditor');

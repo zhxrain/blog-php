@@ -11,7 +11,7 @@
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
+        <div class="container-full">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -35,5 +35,17 @@
         </div>
         <!-- /.container -->
     </nav>
+    <div class="container-full">
+        <div class="row">
+            <div class="col-lg-2">
+                <div class="list-group" style="background-color: blue";>
+                    <a href="#" class="list-group-item active">Link</a>
+                </div>
+            </div>
+            <div class="col-lg-10" style="background-color: red;">
+                content
+            </div>
+        </div>
+    </div>
 </body>
 </html>

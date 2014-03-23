@@ -103,4 +103,11 @@ class PostAdminController extends \BaseController {
     return Redirect::to('admin/login')
       ->with('error', "Oops! Username or password don't match");
   }
+
+  public function showEditor($id)
+  {
+    $post = Post::where('id', $id)
+      ->first();
+    return View::make('editor', array('post' => $post));
+  }
 }
