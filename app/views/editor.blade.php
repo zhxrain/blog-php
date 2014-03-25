@@ -44,7 +44,7 @@
 							&nbsp;&nbsp; Markdown
 						</header>
 						<section class="entry-markdown-content">
-              <textarea id="entry-markdown">{{ $post->markdown }}</textarea>
+              <textarea id="entry-markdown">{{ $post->markdown or "" }}</textarea>
 						</section>
 					</section>
 					<section class="entry-preview active">

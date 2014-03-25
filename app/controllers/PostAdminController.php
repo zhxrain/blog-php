@@ -110,4 +110,9 @@ class PostAdminController extends \BaseController {
       ->first();
     return View::make('editor', array('post' => $post));
   }
+
+  public function createEditor()
+  {
+    return View::make('editor');
+  }
 }
