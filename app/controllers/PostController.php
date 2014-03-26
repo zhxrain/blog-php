@@ -39,7 +39,14 @@ class PostController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		$title = Input::get('title');
+		$markdown = Input::get('markdown');
+
+    $post = new Post;
+    $post->title = $title;
+    $post->markdown = $markdown;
+    $post->save();
+    return Response::json("Create post success", 200);
 	}
 
 	/**

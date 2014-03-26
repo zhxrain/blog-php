@@ -12,6 +12,36 @@
   {{ HTML::script("js/ghostdown.js") }}
   {{ HTML::style("css/ghostdown.css") }}
 
+  <script>
+    function put(id)
+    {
+      if (!document.getElementById('entry-markdown'))
+        return;
+      var editor = CodeMirror.fromTextArea(document.getElementById('entry-markdown'), {
+        mode: 'markdown',
+        tabMode: 'indent',
+        lineWrapping: true
+      });
+      var markdown = editor.getValue();
+      if(id == 0){
+        $.ajax({
+            url: "/posts",
+            type: 'POST',
+            data: {
+              title: "test123",
+              markdown : markdown
+            },
+            success: function(data){
+              document.location.href='/admin';
+            },
+            error: function(jqxhr) {
+              alert(jqxhr.responseText); // @text = response error, it is will be errors: 324, 500, 404 or anythings else
+            }
+        });
+      }
+    }
+  </script>
+
 </head>
 <body>
     <div class="header">
@@ -61,7 +91,7 @@
 
     </div>
     <div class="footer">
-      <button>提交</button>
+      <button onclick="put({{ $post->id or 0 }})">提交</button>
     </div>
 
 </body>
