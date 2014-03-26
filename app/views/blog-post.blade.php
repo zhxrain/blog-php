@@ -9,11 +9,22 @@
 
     <title>{{ $post->title }}</title>
 
+    {{ HTML::script("js/jquery-1.10.2.js") }}
+    {{ HTML::script("js/bootstrap.js") }}
+    {{ HTML::script("js/ghostdown.js") }}
     <!-- Bootstrap core CSS -->
     {{ HTML::style("css/bootstrap.css") }}
 
     <!-- Add custom CSS here -->
     {{ HTML::style("css/blog-post.css") }}
+
+    <script>
+      $().ready(function() {
+        var converter = new Showdown.converter();
+        var preview = document.getElementsByClassName('rendered-content')[0];
+        preview.innerHTML = converter.makeHtml("{{ $post->markdown }}");
+      });
+    </script>
 
 </head>
 
@@ -51,7 +62,7 @@
                     <span class="glyphicon glyphicon-time"></span> Posted on {{ $post->created_at }} </p>
                 <hr>
                 <p class="lead"></p>
-                <p>{{ $post->content }}</p>
+                <div class="rendered-content"></div>
                 <p><strong>Placeholder text by:</strong>
                 </p>
                 <ul>
@@ -185,8 +196,6 @@
     <!-- /.container -->
 
     <!-- JavaScript -->
-    {{ HTML::script("js/jquery-1.10.2.js") }}
-    {{ HTML::script("js/bootstrap.js") }}
 
 </body>
 
