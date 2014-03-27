@@ -12,7 +12,6 @@
   {{ HTML::style("css/main.css") }}
 </head>
 <body>
-    <div class="header">
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container-full">
             <div class="navbar-header">
@@ -38,23 +37,23 @@
         </div>
         <!-- /.container -->
     </nav>
-    </div>
 
-    <div class="container-full main">
+    <div class="content">
         <div class="row">
             <div class="col-lg-2">
-                <div class="post-list">
-                    <ul class="list-group";>
-                    @foreach($posts as $post)
-                        <li class="list-group-item"><a href="#" class="list-group-item active">{{ $post->title }}</a></li>
-                    @endforeach
-                    </ul>
-                </div>
+                <ul class="list-group post-list";>
+                @foreach($posts as $post)
+                    <li class="list-group-item"><a href="#" class="list-group-item active">{{ $post->title }}</a></li>
+                @endforeach
+                </ul>
             </div>
             <div class="col-lg-10">
                 content
             </div>
         </div>
+    </div>
+    <div class="footer">
+      @copy zhxrain
     </div>
 </body>
 </html>
