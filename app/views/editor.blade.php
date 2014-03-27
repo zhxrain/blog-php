@@ -17,18 +17,15 @@
     {
       if (!document.getElementById('entry-markdown'))
         return;
-      var editor = CodeMirror.fromTextArea(document.getElementById('entry-markdown'), {
-        mode: 'markdown',
-        tabMode: 'indent',
-        lineWrapping: true
-      });
+      var editor = $('.CodeMirror')[0].CodeMirror;
       var markdown = editor.getValue();
+      var title = $("#post_title").val();
       if(id == 0){
         $.ajax({
             url: "/posts",
             type: 'POST',
             data: {
-              title: "test123",
+              title: title,
               markdown : markdown
             },
             success: function(data){
@@ -63,6 +60,9 @@
         <!-- /.container -->
     </nav>
     </div>
+    <div class="title">
+      <input type="text" name="title" id="post_title" placeholder="Title">
+    </div>
 
     <div class="features">
 
@@ -74,7 +74,7 @@
 							&nbsp;&nbsp; Markdown
 						</header>
 						<section class="entry-markdown-content">
-              <textarea id="entry-markdown">{{ $post->markdown or "" }}</textarea>
+              <textarea id="entry-markdown"></textarea>
 						</section>
 					</section>
 					<section class="entry-preview active">
