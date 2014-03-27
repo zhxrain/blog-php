@@ -9,6 +9,7 @@ body {
   height: 100%;
   margin: 0px;
   padding: 0px;
+  background: #aaa;
 }
 .CodeMirror {
 	font-family: monospace;
@@ -295,10 +296,26 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {
   height: 50px;
 }
 
+.title {
+  margin: 6px 0px;
+  height: 50px;
+  background: #fff;
+}
+
+.title input{
+  width: 100%;
+  height: 100%;
+  font-size: 32px;
+  margin: 0;
+  padding: 0px 20px;
+  border: 0px;
+  display: block
+}
+
 .features {
   width: 100%;
   position: absolute;
-  top: 50px;
+  top: 111px;
   bottom: 50px;
   left: 0px;
 }
@@ -343,6 +360,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {
 	padding: 40px 0;
 	margin: 0 auto;
 	position: relative;
+  border: 1px solid #a9a9a9;
 	height: 100%
 }
 @media (max-width: 860px), (max-width: 860px) {
