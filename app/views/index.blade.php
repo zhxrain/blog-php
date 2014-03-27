@@ -8,8 +8,11 @@
 
   <!-- Add custom CSS here -->
   {{ HTML::style("css/blog-home.css") }}
+
+  {{ HTML::style("css/main.css") }}
 </head>
 <body>
+    <div class="header">
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container-full">
             <div class="navbar-header">
@@ -35,14 +38,20 @@
         </div>
         <!-- /.container -->
     </nav>
-    <div class="container-full">
+    </div>
+
+    <div class="container-full main">
         <div class="row">
             <div class="col-lg-2">
-                <div class="list-group" style="background-color: blue";>
-                    <a href="#" class="list-group-item active">Link</a>
+                <div class="post-list">
+                    <ul class="list-group";>
+                    @foreach($posts as $post)
+                        <li class="list-group-item"><a href="#" class="list-group-item active">{{ $post->title }}</a></li>
+                    @endforeach
+                    </ul>
                 </div>
             </div>
-            <div class="col-lg-10" style="background-color: red;">
+            <div class="col-lg-10">
                 content
             </div>
         </div>
