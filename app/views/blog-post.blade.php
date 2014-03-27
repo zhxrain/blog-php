@@ -22,10 +22,14 @@
       $().ready(function() {
         var converter = new Showdown.converter();
         var preview = document.getElementsByClassName('rendered-content')[0];
-        preview.innerHTML = converter.makeHtml("{{ $post->markdown }}");
+        var string = hereDoc(function () {/*{{ $post->markdown }}*/});
+        preview.innerHTML = converter.makeHtml(string);
       });
-    </script>
 
+      function hereDoc(f) {　
+          return f.toString().replace(/^[^\/]+\/\*!?\s?/, '').replace(/\*\/[^\/]+$/, '');
+      }
+    </script>
 </head>
 
 <body>
