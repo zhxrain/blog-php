@@ -3,6 +3,10 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="language" content="en" />
+  {{ HTML::script("js/jquery-1.10.2.js") }}
+  {{ HTML::script("js/bootstrap.js") }}
+  {{ HTML::script("js/ghostdown.js") }}
+  {{ HTML::script("js/basic.js") }}
   <!-- Bootstrap core CSS -->
   {{ HTML::style("css/bootstrap.css") }}
 
@@ -10,6 +14,27 @@
   {{ HTML::style("css/blog-home.css") }}
 
   {{ HTML::style("css/main.css") }}
+
+  <script>
+    $().ready(function() {
+      var converter = new Showdown.converter();
+      var preview = document.getElementsByClassName('rendered-content')[0];
+      var string = hereDoc(function () {/*{{ $posts->first()->markdown}}*/});
+      preview.innerHTML = converter.makeHtml(string);
+
+      $('ul.list-group.post-list li').click(function(e) {
+        var converter = new Showdown.converter();
+        var preview = document.getElementsByClassName('rendered-content')[0];
+        var id = parseInt($(this).attr("id"));
+        @foreach($posts as $post)
+        if(id == {{ $post->id }})
+          var string = hereDoc(function () {/*{{ $post->markdown }}*/});
+        @endforeach
+        preview.innerHTML = converter.makeHtml(string);
+        $('.content-option a').attr('href','admin/editor/'+id);
+      });
+    });
+  </script>
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -40,20 +65,24 @@
 
     <div class="content">
         <div class="row">
-            <div class="col-lg-2">
+            <div class="col-xs-3">
                 <ul class="list-group post-list";>
                 @foreach($posts as $post)
-                    <li class="list-group-item"><a href="#" class="list-group-item active">{{ $post->title }}</a></li>
+                    <li class="list-group-item" id={{ $post->id }}><a href="#" class="list-group-item active">{{ $post->title }}</a></li>
                 @endforeach
                 </ul>
             </div>
-            <div class="col-lg-10">
-                content
+            <div class="col-xs-9">
+                <header class="content-option">
+                    <a href="admin/editor/{{ $posts->first()->id }}"><span class="glyphicon glyphicon-edit"></span></a>
+                </header>
+                <div class="rendered-content">
+                </div>
             </div>
         </div>
     </div>
     <div class="footer">
-      @copy zhxrain
+        <p>Copyright &copy; zhxrain 2014</p>
     </div>
 </body>
 </html>

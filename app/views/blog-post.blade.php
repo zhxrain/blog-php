@@ -12,6 +12,7 @@
     {{ HTML::script("js/jquery-1.10.2.js") }}
     {{ HTML::script("js/bootstrap.js") }}
     {{ HTML::script("js/ghostdown.js") }}
+    {{ HTML::script("js/basic.js") }}
     <!-- Bootstrap core CSS -->
     {{ HTML::style("css/bootstrap.css") }}
 
@@ -25,10 +26,6 @@
         var string = hereDoc(function () {/*{{ $post->markdown }}*/});
         preview.innerHTML = converter.makeHtml(string);
       });
-
-      function hereDoc(f) {　
-          return f.toString().replace(/^[^\/]+\/\*!?\s?/, '').replace(/\*\/[^\/]+$/, '');
-      }
     </script>
 </head>
 

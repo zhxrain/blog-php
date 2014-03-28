@@ -25,7 +25,7 @@ html, body {
 }
 
 .post-list {
-  overflow: scroll;
+  overflow: auto;
   overflow-x: hidden;
   padding: 0;
   top: 50px;
@@ -40,4 +40,32 @@ html, body {
   background-color: #AAA;
   width: 100%;
   text-align: center;
+}
+.rendered-content {
+  padding-top: 30px;
+  padding-right: 30px;
+	font-size: 2rem;
+  overflow: auto;
+  overflow-x: hidden;
+  height: 100%;
+}
+.content-option {
+	padding-right: 68px;
+	margin-right: 1px;
+  position: absolute;
+  width: 100%;
+  height: 30px;
+  background: #fff;
+  text-align: right;
+  filter:alpha(opacity=80);-moz-opacity:0.8;opacity:0.8; -khtml-opacity: 0.8;
+  font-size: 24px;
+}
+.features .editor .entry-markdown .floatingheader a, .features .editor .entry-preview .floatingheader a {
+	color: #fff
+}
+}
+.features .editor .entry-markdown .floatingheader a, .features .editor .entry-preview .floatingheader a {
+	color: #aaa9a2
+}
+.features .editor .entry-markdown.active, .features .editor .entry-preview.active {
 }
