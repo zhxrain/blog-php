@@ -69,3 +69,16 @@ html, body {
 }
 .features .editor .entry-markdown.active, .features .editor .entry-preview.active {
 }
+
+li.list-group-item.active {
+  background: #428bca;
+  color: #fff;
+  min-height: 70px;
+  text-align: left;
+}
+
+li.list-group-item{
+  color: #428bca;
+  min-height: 70px;
+  text-align: left;
+}

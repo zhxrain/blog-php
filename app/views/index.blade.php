@@ -21,11 +21,14 @@
       var preview = document.getElementsByClassName('rendered-content')[0];
       var string = hereDoc(function () {/*{{ $posts->first()->markdown}}*/});
       preview.innerHTML = converter.makeHtml(string);
+      $('ul.list-group.post-list').find('li').first().addClass('active');
 
       $('ul.list-group.post-list li').click(function(e) {
         var converter = new Showdown.converter();
         var preview = document.getElementsByClassName('rendered-content')[0];
         var id = parseInt($(this).attr("id"));
+        $('ul.list-group.post-list').find('li').removeClass('active');
+        $(this).addClass('active');
         @foreach($posts as $post)
         if(id == {{ $post->id }})
           var string = hereDoc(function () {/*{{ $post->markdown }}*/});
@@ -68,7 +71,7 @@
             <div class="col-xs-3">
                 <ul class="list-group post-list";>
                 @foreach($posts as $post)
-                    <li class="list-group-item" id={{ $post->id }}><a href="#" class="list-group-item active">{{ $post->title }}</a></li>
+                    <li class="list-group-item" id={{ $post->id }}><h4>{{ $post->title }}</h4></li>
                 @endforeach
                 </ul>
             </div>

@@ -98,7 +98,7 @@ class PostAdminController extends \BaseController {
     $password = Input::get('password');
     if (Auth::attempt(array('name' => $username, 'password' => $password)))
     {
-      return Redirect::intended('/');
+      return Redirect::intended('admin');
     }
     return Redirect::to('admin/login')
       ->with('error', "Oops! Username or password don't match");
