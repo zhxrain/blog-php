@@ -6,6 +6,8 @@
 
   {{ HTML::script("js/jquery-1.10.2.js") }}
   {{ HTML::script("js/bootstrap.js") }}
+  {{ HTML::script("js/basic.js") }}
+
   {{ HTML::style("css/bootstrap.css") }}
 
 	<!-- Ghosty-ness markdowny-ness -->
@@ -13,6 +15,13 @@
   {{ HTML::style("css/ghostdown.css") }}
 
   <script>
+    $().ready(function() {
+      $("#post_title").val("{{ $post->title or '' }}");
+      var editor = $('.CodeMirror')[0].CodeMirror;
+      var string = hereDoc(function () {/*{{ $post->markdown or '' }}*/});
+      editor.setValue(string);
+    });
+
     function put(id)
     {
       if (!document.getElementById('entry-markdown'))
@@ -24,6 +33,21 @@
         $.ajax({
             url: "/posts",
             type: 'POST',
+            data: {
+              title: title,
+              markdown : markdown
+            },
+            success: function(data){
+              document.location.href='/admin';
+            },
+            error: function(jqxhr) {
+              alert(jqxhr.responseText); // @text = response error, it is will be errors: 324, 500, 404 or anythings else
+            }
+        });
+      } else {
+        $.ajax({
+            url: "/posts/{{ $post->id }}",
+            type: 'PUT',
             data: {
               title: title,
               markdown : markdown

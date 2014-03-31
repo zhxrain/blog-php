@@ -81,4 +81,5 @@ li.list-group-item{
   color: #428bca;
   min-height: 70px;
   text-align: left;
+  cursor: pointer;
 }

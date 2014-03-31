@@ -59,10 +59,16 @@
 
                 <!-- pager -->
                 <ul class="pager">
-                    <li class="previous"><a href="#">&larr; Older</a>
+                    @if($posts->getCurrentPage() == 1 )
+                    @else
+                    <li class="previous"><a href="{{ $posts->getUrl($posts->getCurrentPage()-1 ) }}">&larr; Older</a>
                     </li>
-                    <li class="next"><a href="#">Newer &rarr;</a>
+                    @endif
+                    @if($posts->getCurrentPage() == $posts->getLastPage())
+                    @else
+                    <li class="next"><a href="{{ $posts->getUrl($posts->getCurrentPage()+1 ) }}">Newer &rarr;</a>
                     </li>
+                    @endif
                 </ul>
 
             </div>

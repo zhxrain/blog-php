@@ -92,7 +92,14 @@ class PostController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$title = Input::get('title');
+		$markdown = Input::get('markdown');
+
+    $post = Post::find($id);
+    $post->title = $title;
+    $post->markdown = $markdown;
+    $post->save();
+    return Response::json("Update post success", 200);
 	}
 
 	/**
