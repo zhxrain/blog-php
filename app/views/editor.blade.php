@@ -46,7 +46,7 @@
         });
       } else {
         $.ajax({
-            url: "/posts/{{ $post->id }}",
+            url: "/posts/{{ $post->id or "" }}",
             type: 'PUT',
             data: {
               title: title,
