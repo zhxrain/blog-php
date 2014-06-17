@@ -18,6 +18,7 @@ class PostTableSeeder extends Seeder {
               'content' => $faker->text,
               'status' => 'published',
               'markdown' => $faker->text,
+              'category' => "test",
               'created_at' => new DateTime,
               'updated_at' => new DateTime
               ]);

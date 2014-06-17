@@ -20,6 +20,7 @@ class CreatePostsTable extends Migration {
       $table->string('status')->nullable();
       $table->string('markdown', 20480)->nullable();
       $table->string('tags')->nullable();
+      $table->string('category')->nullable();
       $table->timestamps();
     });
 	}
