@@ -25,7 +25,8 @@
         var converter = new Showdown.converter();
         var preview = document.getElementsByClassName('rendered-content')[0];
         var string = hereDoc(function () {/*{{ $post->markdown }}*/});
-        preview.innerHTML = converter.makeHtml(string);
+        if(preview)
+          preview.innerHTML = converter.makeHtml(string);
       });
     </script>
 </head>
