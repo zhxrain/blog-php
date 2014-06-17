@@ -9,6 +9,7 @@
   {{ HTML::script("js/basic.js") }}
 
   {{ HTML::style("css/bootstrap.css") }}
+  {{ HTML::style("css/bootstrap-social.css") }}
 
 	<!-- Ghosty-ness markdowny-ness -->
   {{ HTML::script("js/ghostdown.js") }}
