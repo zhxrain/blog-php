@@ -15,6 +15,8 @@
     {{ HTML::script("js/basic.js") }}
     <!-- Bootstrap core CSS -->
     {{ HTML::style("css/bootstrap.css") }}
+    {{ HTML::style("css/bootstrap-social.css") }}
+    {{ HTML::style("css/font-awesome.css") }}
 
     <!-- Add custom CSS here -->
     {{ HTML::style("css/blog-home.css") }}
@@ -60,7 +62,7 @@
 
             <div class="col-lg-4">
                 <div class="well">
-                  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=0&noborder=0&isWeibo=1&isFans=1&uid=1631588710&verifier=0213fd08&dpc=1"></iframe>
+                  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=650&fansRow=2&ptype=1&speed=0&skin=1&isTitle=0&noborder=0&isWeibo=1&isFans=1&uid=1631588710&verifier=0213fd08&dpc=1"></iframe>
                 </div>
                 <div class="well">
                     <h4>Blog Search</h4>
@@ -116,6 +118,20 @@
         <hr>
 
         <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <a class="btn btn-social btn-twitter" href="https://twitter.com/zhxrain">
+                        <i class="fa fa-twitter"></i>Twitter
+                    </a>
+                    <a class="btn btn-social btn-github" href="https://github.com/zhxrain">
+                        <i class="fa fa-github"></i>Github
+                    </a>
+                    <a class="btn btn-social btn-google-plus" href="https://plus.google.com/113575239509050213393/posts">
+                        <i class="fa fa-google-plus"></i>g+
+                    </a>
+                </div>
+            </div>
+            <br>
             <div class="row">
                 <div class="col-lg-12">
                     <p>Copyright &copy; zhxrain 2014</p>
