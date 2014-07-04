@@ -104,6 +104,12 @@ class PostAdminController extends \BaseController {
       ->with('error', "Oops! Username or password don't match");
   }
 
+  public function logout()
+  {
+    Auth::logout();
+    return Redirect::to('');
+  }
+
   public function showEditor($id)
   {
     $post = Post::where('id', $id)

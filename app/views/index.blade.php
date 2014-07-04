@@ -49,7 +49,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.php">管理页面</a>
+                <a class="navbar-brand" href="index.php">主页</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -61,6 +61,11 @@
                     <li><a href="/admin/editor">新建</a>
                     </li>
                 </ul>
+                <div class="top-tool">
+                  <form action="admin/logout" method="Get">
+                    <button><span class="glyphicon glyphicon-log-out"></span></button>
+                  <form>
+                </div>
             </div>
         </div>
         <!-- /.container -->
@@ -76,9 +81,9 @@
                 </ul>
             </div>
             <div class="col-xs-9">
-                <header class="content-option">
+                <div class="content-option">
                     <a href="admin/editor/{{ $posts->first()->id }}"><span class="glyphicon glyphicon-edit"></span></a>
-                </header>
+                </div>
                 <div class="rendered-content">
                 </div>
             </div>
