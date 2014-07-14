@@ -15,8 +15,13 @@ class HomeController extends BaseController {
 	|
 	*/
 
+
 	public function showIndex()
 	{
+    //App::bind('test', function($app){
+      //return new User();
+    //});
+    //Debugbar::info(App::make('test'));
     $posts = Post::paginate(5);
 		return View::make('blog-home', array('posts' => $posts));
 	}
