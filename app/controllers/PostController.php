@@ -113,4 +113,15 @@ class PostController extends \BaseController {
 		//
 	}
 
+  public function search()
+  {
+    $keyword = Input::get('keyword');
+    $posts = Post::where('title', 'LIKE','%'.$keyword.'%')
+             ->orWhere('content', 'LIKE','%'.$keyword.'%')
+             ->orWhere('tags', 'LIKE','%'.$keyword.'%')
+             ->orWhere('markdown', 'LIKE','%'.$keyword.'%')->paginate(5);
+    Debugbar::info($posts);
+		return View::make('blog-home', array('posts' => $posts));
+  }
+
 }

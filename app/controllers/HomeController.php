@@ -22,7 +22,11 @@ class HomeController extends BaseController {
       //return new User();
     //});
     //Debugbar::info(App::make('test'));
-    $posts = Post::paginate(5);
+    $keyword = Input::get('keyword');
+    $posts = Post::where('title', 'LIKE','%'.$keyword.'%')
+             ->orWhere('content', 'LIKE','%'.$keyword.'%')
+             ->orWhere('tags', 'LIKE','%'.$keyword.'%')
+             ->orWhere('markdown', 'LIKE','%'.$keyword.'%')->paginate(5);
 		return View::make('blog-home', array('posts' => $posts));
 	}
 
