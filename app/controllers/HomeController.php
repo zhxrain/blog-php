@@ -23,10 +23,15 @@ class HomeController extends BaseController {
     //});
     //Debugbar::info(App::make('test'));
     $keyword = Input::get('keyword');
-    $posts = Post::where('title', 'LIKE','%'.$keyword.'%')
-             ->orWhere('content', 'LIKE','%'.$keyword.'%')
-             ->orWhere('tags', 'LIKE','%'.$keyword.'%')
-             ->orWhere('markdown', 'LIKE','%'.$keyword.'%')->paginate(5);
+    $posts = Post::where('status', 'LIKE', 'published')
+                 ->where(function($query) use ($keyword)
+                 {
+                   $query->where('title', 'LIKE','%'.$keyword.'%')
+                         ->orWhere('content', 'LIKE','%'.$keyword.'%')
+                         ->orWhere('tags', 'LIKE','%'.$keyword.'%')
+                         ->orWhere('markdown', 'LIKE','%'.$keyword.'%', 'AND');
+                 })
+                 ->paginate(5);
 		return View::make('blog-home', array('posts' => $posts));
 	}
 

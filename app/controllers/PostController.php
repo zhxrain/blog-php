@@ -41,10 +41,12 @@ class PostController extends \BaseController {
 	{
 		$title = Input::get('title');
 		$markdown = Input::get('markdown');
+		$status = Input::get('post_status');
 
     $post = new Post;
     $post->title = $title;
     $post->markdown = $markdown;
+    $post->status = $status;
     $post->save();
     return Response::json("Create post success", 200);
 	}
@@ -94,10 +96,12 @@ class PostController extends \BaseController {
 	{
 		$title = Input::get('title');
 		$markdown = Input::get('markdown');
+		$status = Input::get('status');
 
     $post = Post::find($id);
     $post->title = $title;
     $post->markdown = $markdown;
+    $post->status = $status;
     $post->save();
     return Response::json("Update post success", 200);
 	}
@@ -116,11 +120,15 @@ class PostController extends \BaseController {
   public function search()
   {
     $keyword = Input::get('keyword');
-    $posts = Post::where('title', 'LIKE','%'.$keyword.'%')
-             ->orWhere('content', 'LIKE','%'.$keyword.'%')
-             ->orWhere('tags', 'LIKE','%'.$keyword.'%')
-             ->orWhere('markdown', 'LIKE','%'.$keyword.'%')->paginate(5);
-    Debugbar::info($posts);
+    $posts = Post::where('status', 'LIKE', 'published')
+                 ->where(function($query) use ($keyword)
+                 {
+                   $query->where('title', 'LIKE','%'.$keyword.'%')
+                         ->orWhere('content', 'LIKE','%'.$keyword.'%')
+                         ->orWhere('tags', 'LIKE','%'.$keyword.'%')
+                         ->orWhere('markdown', 'LIKE','%'.$keyword.'%', 'AND');
+                 })
+                 ->paginate(5);
 		return View::make('blog-home', array('posts' => $posts));
   }
 

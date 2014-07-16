@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Ghost Down</title>
+	<title>Post Editor</title>
 
   {{ HTML::script("js/jquery-1.10.2.js") }}
   {{ HTML::script("js/bootstrap.js") }}
@@ -30,13 +30,15 @@
       var editor = $('.CodeMirror')[0].CodeMirror;
       var markdown = editor.getValue();
       var title = $("#post_title").val();
+      var status = $("#post_status").val();
       if(id == 0){
         $.ajax({
             url: "/posts",
             type: 'POST',
             data: {
               title: title,
-              markdown : markdown
+              markdown : markdown,
+              status : status
             },
             success: function(data){
               document.location.href='/admin';
@@ -51,7 +53,8 @@
             type: 'PUT',
             data: {
               title: title,
-              markdown : markdown
+              markdown : markdown,
+              status : status
             },
             success: function(data){
               document.location.href='/admin';
@@ -76,7 +79,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.php">Zhxrain</a>
+                <a class="navbar-brand" href="/index.php">Zhxrain</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -85,39 +88,56 @@
         <!-- /.container -->
     </nav>
     </div>
-    <div class="title">
-      <input type="text" name="title" id="post_title" placeholder="Title">
+    <div class="container-fluid">
+      <div class="title">
+        <input type="text" name="title" id="post_title" placeholder="Title">
+      </div>
+
+      <div class="features">
+
+      <section class="editor">
+        <div class="outer">
+          <div class="editorwrap">
+            <section class="entry-markdown">
+              <header class="floatingheader">
+                &nbsp;&nbsp; Markdown
+              </header>
+              <section class="entry-markdown-content">
+                <textarea id="entry-markdown"></textarea>
+              </section>
+            </section>
+            <section class="entry-preview active">
+              <header class="floatingheader">
+                &nbsp;&nbsp; Preview <span class="entry-word-count">0 words</span>
+              </header>
+              <section class="entry-preview-content">
+                <div class="rendered-markdown"></div>
+              </section>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      </div>
+      <div class="row">
+        <div class="footer">
+          <div class="col-md-10"></div>
+          <div class="col-md-1">
+            <select id="post_status" class="form-control">
+            @if(isset($post) and $post->status == 'published')
+              <option value='draft'>草稿</option>
+              <option value='published' selected>发布</option>
+            @else
+              <option value='draft' selected>草稿</option>
+              <option value='published'>发布</option>
+            @endif
+            </select>
+          </div>
+          <div class="col-md-1">
+            <button class="btn btn-default" onclick="put({{ $post->id or 0 }})">提交</button>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <div class="features">
-
-		<section class="editor">
-			<div class="outer">
-				<div class="editorwrap">
-					<section class="entry-markdown">
-						<header class="floatingheader">
-							&nbsp;&nbsp; Markdown
-						</header>
-						<section class="entry-markdown-content">
-              <textarea id="entry-markdown"></textarea>
-						</section>
-					</section>
-					<section class="entry-preview active">
-						<header class="floatingheader">
-						  &nbsp;&nbsp; Preview <span class="entry-word-count">0 words</span>
-						</header>
-						<section class="entry-preview-content">
-							<div class="rendered-markdown"></div>
-						</section>
-					</section>
-				</div>
-			</div>
-		</section>
-
-    </div>
-    <div class="footer">
-      <button onclick="put({{ $post->id or 0 }})">提交</button>
-    </div>
-
 </body>
 </html>
