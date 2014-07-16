@@ -76,7 +76,16 @@
             <div class="col-xs-3">
                 <ul class="list-group post-list";>
                 @foreach($posts as $post)
-                    <li class="list-group-item" id={{ $post->id }}><h4>{{ $post->title }}</h4></li>
+                    <li class="list-group-item" id={{ $post->id }}>
+                      <h4>{{ $post->title }}</h4>
+                      <div class="status">
+                        @if($post->status == "published")
+                        <p>已发布</p>
+                        @else
+                        <p>草稿</p>
+                        @endif
+                      </div>
+                    </li>
                 @endforeach
                 </ul>
             </div>

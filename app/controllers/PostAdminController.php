@@ -11,7 +11,7 @@ class PostAdminController extends \BaseController {
 	{
     if(Auth::check())
     {
-      $posts = Post::all();
+      $posts = Post::orderBy('id', 'DESC')->get();
       return View::make('index', array('posts' => $posts));
     }
     return Redirect::to("/admin/login");

@@ -88,3 +88,6 @@ li.list-group-item{
   right: 30px;
   top: 20px;
 }
+
+li.list-group-item > .status{
+}
