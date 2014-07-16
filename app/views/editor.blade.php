@@ -134,7 +134,7 @@
             </select>
           </div>
           <div class="col-md-1">
-            <button class="btn btn-default" onclick="put({{ $post->id or 0 }})">提交</button>
+            <button class="btn btn-default btn-block" onclick="put({{ $post->id or 0 }})">提交</button>
           </div>
         </div>
       </div>
