@@ -17,6 +17,7 @@ class PostTableSeeder extends Seeder {
               'title' => $faker->sentence($nbWords = 6),
               'content' => $faker->text,
               'status' => 'published',
+              'author' => 'ZhongXiang',
               'markdown' => $faker->text,
               'category' => "test",
               'created_at' => new DateTime,

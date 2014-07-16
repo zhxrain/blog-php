@@ -42,11 +42,13 @@ class PostController extends \BaseController {
 		$title = Input::get('title');
 		$markdown = Input::get('markdown');
 		$status = Input::get('post_status');
+    $author = Auth::user()->name;
 
     $post = new Post;
     $post->title = $title;
     $post->markdown = $markdown;
     $post->status = $status;
+    $post->author = $author;
     $post->save();
     return Response::json("Create post success", 200);
 	}

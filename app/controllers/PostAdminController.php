@@ -11,7 +11,9 @@ class PostAdminController extends \BaseController {
 	{
     if(Auth::check())
     {
-      $posts = Post::orderBy('id', 'DESC')->get();
+      $posts = Post::orderBy('id', 'DESC')
+                   ->where('author', 'LIKE',Auth::user()->name)
+                   ->get();
       return View::make('index', array('posts' => $posts));
     }
     return Redirect::to("/admin/login");
@@ -112,13 +114,28 @@ class PostAdminController extends \BaseController {
 
   public function showEditor($id)
   {
-    $post = Post::where('id', $id)
-      ->first();
-    return View::make('editor', array('post' => $post));
+
+    if(Auth::check())
+    {
+      $post = Post::where('id', $id)
+        ->first();
+      if($post->author != Auth::user()->name)
+        return Response::view('errors.missing', array(), 404);
+      return View::make('editor', array('post' => $post));
+    }
+    else
+      return Redirect::to('admin/login')
+        ->with('error', "Please login at first.");
   }
 
   public function createEditor()
   {
-    return View::make('editor');
+    if(Auth::check())
+    {
+      return View::make('editor');
+    }
+    else
+      return Redirect::to('admin/login')
+        ->with('error', "Please login at first.");
   }
 }

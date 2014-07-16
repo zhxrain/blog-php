@@ -4,7 +4,7 @@
 
 <!-- the actual blog post: title/author/date/content -->
 <h1>{{ $post->title }}</h1>
-<p class="lead">by <a href="/index.php">ZhongXiang</a>
+<p class="lead">by <a href="/index.php">{{ $post->author }}</a>
 </p>
 <hr>
 <p>

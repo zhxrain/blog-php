@@ -22,8 +22,8 @@ class UserTableSeeder extends Seeder {
             'updated_at' => Carbon::now(),
           ),
           array(
-            'name'      => 'user1',
-            'email'      => 'user1@example.org',
+            'name'      => 'ZhongXiang',
+            'email'      => 'zhxrain@gmai.com',
             'password'   => Hash::make('123456'),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
