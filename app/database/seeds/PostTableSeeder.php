@@ -15,7 +15,7 @@ class PostTableSeeder extends Seeder {
         {
             $post = Post::create([
               'title' => $faker->sentence($nbWords = 6),
-              'content' => $faker->text,
+              'summary' => $faker->text,
               'status' => 'published',
               'author' => 'ZhongXiang',
               'markdown' => $faker->text,

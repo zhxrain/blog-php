@@ -27,10 +27,11 @@ class HomeController extends BaseController {
                  ->where(function($query) use ($keyword)
                  {
                    $query->where('title', 'LIKE','%'.$keyword.'%')
-                         ->orWhere('content', 'LIKE','%'.$keyword.'%')
+                         ->orWhere('summary', 'LIKE','%'.$keyword.'%')
                          ->orWhere('tags', 'LIKE','%'.$keyword.'%')
                          ->orWhere('markdown', 'LIKE','%'.$keyword.'%', 'AND');
                  })
+                 ->orderBy('id', 'DESC')
                  ->paginate(5);
 		return View::make('blog-home', array('posts' => $posts));
 	}

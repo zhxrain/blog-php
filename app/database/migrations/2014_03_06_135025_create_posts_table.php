@@ -16,7 +16,7 @@ class CreatePostsTable extends Migration {
     {
       $table->increments('id');
       $table->string('title')->unique();
-      $table->string('content')->nullable();
+      $table->string('summary')->nullable();
       $table->string('status')->nullable();
       $table->string('author', 32)->nullable();
       $table->string('markdown', 20480)->nullable();

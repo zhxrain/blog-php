@@ -29,6 +29,7 @@
         return;
       var editor = $('.CodeMirror')[0].CodeMirror;
       var markdown = editor.getValue();
+      var content = document.getElementsByClassName('rendered-markdown')[0].innerHTML;
       var title = $("#post_title").val();
       var status = $("#post_status").val();
       if(id == 0){
@@ -38,6 +39,7 @@
             data: {
               title: title,
               markdown : markdown,
+              content : content,
               status : status
             },
             success: function(data){
@@ -54,6 +56,7 @@
             data: {
               title: title,
               markdown : markdown,
+              content : content,
               status : status
             },
             success: function(data){

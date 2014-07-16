@@ -10,7 +10,7 @@
   <hr>
   <p><span class="glyphicon glyphicon-time"></span> Posted on {{ $post->created_at }}</p>
   <hr>
-  <p>{{ $post->content }}</p>
+  <p>{{ $post->summary }}</p>
   <a class="btn btn-primary" href="/posts/{{ $post->id }}">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
   <hr>
 @endforeach

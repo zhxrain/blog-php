@@ -10,7 +10,17 @@ class PostController extends \BaseController {
 	public function index()
 	{
 		//
-    $posts = Post::paginate(2);
+    $keyword = Input::get('keyword');
+    $posts = Post::where('status', 'LIKE', 'published')
+                 ->where(function($query) use ($keyword)
+                 {
+                   $query->where('title', 'LIKE','%'.$keyword.'%')
+                         ->orWhere('summary', 'LIKE','%'.$keyword.'%')
+                         ->orWhere('tags', 'LIKE','%'.$keyword.'%')
+                         ->orWhere('markdown', 'LIKE','%'.$keyword.'%', 'AND');
+                 })
+                 ->orderBy('id', 'DESC')
+                 ->paginate(5);
 		return View::make('blog-home', array('posts' => $posts));
     /*
     $posts = Post::all();
@@ -43,11 +53,21 @@ class PostController extends \BaseController {
 		$markdown = Input::get('markdown');
 		$status = Input::get('post_status');
     $author = Auth::user()->name;
+    $content = Input::get('content');
+    $summary = strip_tags($content);
+
+    if (strlen($summary) > 100) {
+      // truncate string
+      $stringCut = substr($summary, 0, 100);
+      // make sure it ends in a word so assassinate doesn't become ass...
+      $summary = substr($stringCut, 0, strrpos($stringCut, ' ')).'...';
+    }
 
     $post = new Post;
     $post->title = $title;
     $post->markdown = $markdown;
     $post->status = $status;
+    $post->summary = $summary;
     $post->author = $author;
     $post->save();
     return Response::json("Create post success", 200);
@@ -100,9 +120,21 @@ class PostController extends \BaseController {
 		$markdown = Input::get('markdown');
 		$status = Input::get('status');
 
+    $content = Input::get('content');
+    $summary = strip_tags($content);
+
+    if (strlen($summary) > 200) {
+      // truncate string
+      $stringCut = substr($summary, 0, 200);
+      // make sure it ends in a word so assassinate doesn't become ass...
+      $summary = substr($stringCut, 0, strrpos($stringCut, ' ')).'  ......';
+    }
+
+
     $post = Post::find($id);
     $post->title = $title;
     $post->markdown = $markdown;
+    $post->summary = $summary;
     $post->status = $status;
     $post->save();
     return Response::json("Update post success", 200);
@@ -126,7 +158,7 @@ class PostController extends \BaseController {
                  ->where(function($query) use ($keyword)
                  {
                    $query->where('title', 'LIKE','%'.$keyword.'%')
-                         ->orWhere('content', 'LIKE','%'.$keyword.'%')
+                         ->orWhere('summary', 'LIKE','%'.$keyword.'%')
                          ->orWhere('tags', 'LIKE','%'.$keyword.'%')
                          ->orWhere('markdown', 'LIKE','%'.$keyword.'%', 'AND');
                  })

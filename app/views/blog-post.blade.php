@@ -12,16 +12,6 @@
 <hr>
 <p class="lead"></p>
 <div class="rendered-content"></div>
-<p><strong>Placeholder text by:</strong>
-</p>
-<ul>
-    <li><a href="http://spaceipsum.com/">Space Ipsum</a>
-    </li>
-    <li><a href="http://cupcakeipsum.com/">Cupcake Ipsum</a>
-    </li>
-    <li><a href="http://tunaipsum.com/">Tuna Ipsum</a>
-    </li>
-</ul>
 
 <hr>
 
