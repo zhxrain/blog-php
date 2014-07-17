@@ -33,3 +33,8 @@ footer {
 .rendered-content {
 	font-size: 2rem
 }
+
+.quote-name {
+  font-size: 14px;
+  color: blue;
+}

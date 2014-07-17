@@ -16,7 +16,7 @@
 <hr>
 
 <!-- the comment box -->
-<div class="well">
+<div class="well" id="comment-form">
     <h4>留言:</h4>
     <form class="form-horizontal" role="form" action="/comments" method="POST">
         <input type="hidden" name="post_id" value={{ $post->id }}>
@@ -54,7 +54,7 @@
 @foreach( $post->comments as $comment)
 <div class="well">
   <div class="act">
-    <a href="#">回复</a>｜<a href="javascript:void(0)" onclick="quote('{{ $comment->id }}', '{{ $comment->author }}'); return true">引用</a>
+    <a href="#">回复</a>｜<a href="#comment-form" onclick="quote('{{ $comment->id }}', '{{ $comment->author }}'); return true">引用</a>
   </div>
   <div class="info">
       <div class="author"> {{ $comment->author }} </div>
@@ -78,7 +78,9 @@
 
   function quote(id, author) {
     var comment = document.getElementById('comment-'+id).innerHTML;
-    document.getElementById('inputComment').value = "<blockquote><p>" + author + ":</p>" + comment + "</blockquote>";
+    var inputComment = document.getElementById('inputComment');
+    inputComment.focus();
+    inputComment.value = "<blockquote><p class=\"quote-name\">" + author + " Says:</p>" + comment + "</blockquote>";
   }
 </script>
 @stop
