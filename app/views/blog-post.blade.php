@@ -54,13 +54,13 @@
 @foreach( $post->comments as $comment)
 <div class="well">
   <div class="act">
-    <a href="#">回复</a>｜<a href="#">引用</a>
+    <a href="#">回复</a>｜<a href="javascript:void(0)" onclick="quote('{{ $comment->id }}', '{{ $comment->author }}'); return true">引用</a>
   </div>
   <div class="info">
       <div class="author"> {{ $comment->author }} </div>
       <div class="date"> <small>{{ $comment->created_at }}|#{{ $count }}</small> </div>
   </div>
-  <div class="comment">
+  <div class="comment" id="comment-{{ $comment->id }}">
     <p>{{ $comment->content }}</p>
   </div>
 </div>
@@ -75,5 +75,10 @@
     if(preview)
       preview.innerHTML = converter.makeHtml(string);
   });
+
+  function quote(id, author) {
+    var comment = document.getElementById('comment-'+id).innerHTML;
+    document.getElementById('inputComment').value = "<blockquote><p>" + author + ":</p>" + comment + "</blockquote>";
+  }
 </script>
 @stop
