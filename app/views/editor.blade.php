@@ -14,6 +14,8 @@
 	<!-- Ghosty-ness markdowny-ness -->
   {{ HTML::script("js/ghostdown.js") }}
   {{ HTML::style("css/ghostdown.css") }}
+  {{ HTML::script("js/dropzone.js") }}
+  {{ HTML::style("css/dropzone.css") }}
 
   <script>
     $().ready(function() {

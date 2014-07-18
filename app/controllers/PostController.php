@@ -166,4 +166,20 @@ class PostController extends \BaseController {
 		return View::make('blog-home', array('posts' => $posts));
   }
 
+  public function imgupload()
+  {
+    $file = Input::file('file'); // your file upload input field in the form should be named 'file'
+
+    $destinationPath = 'uploads/'.str_random(8);
+    $filename = $file->getClientOriginalName();
+    //$extension =$file->getClientOriginalExtension(); //if you need extension of the file
+    $uploadSuccess = Input::file('file')->move($destinationPath, $filename);
+
+    if( $uploadSuccess ) {
+      return Response::json(array('path' => $destinationPath.'/'.$filename), 200); // or do a redirect with some message that file was uploaded
+    } else {
+      return Response::json('error', 400);
+    }
+  }
+
 }

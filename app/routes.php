@@ -16,6 +16,7 @@ Route::get('/', 'HomeController@showIndex');
 Route::resource('posts', 'PostController');
 Route::get('post/search', 'PostController@search');
 Route::resource('comments', 'CommentController');
+Route::post('post/imgupload', 'PostController@imgupload');
 
 Route::get('admin', 'PostAdminController@index');
 Route::get('admin/login', 'PostAdminController@login');
