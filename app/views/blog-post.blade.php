@@ -15,6 +15,27 @@
 
 <hr>
 
+<!-- the comments -->
+
+<?php $count=1?>
+@foreach( $post->comments as $comment)
+<div class="well">
+  <div class="act">
+    <a href="#">回复</a>｜<a href="#comment-form" onclick="quote('{{ $comment->id }}', '{{ $comment->author }}'); return true">引用</a>
+  </div>
+  <div class="info">
+      <div class="author"> {{ $comment->author }} </div>
+      <div class="date"> <small>{{ $comment->created_at }}|#{{ $count }}</small> </div>
+  </div>
+  <div class="comment" id="comment-{{ $comment->id }}">
+    <p>{{ $comment->content }}</p>
+  </div>
+</div>
+<?php $count++ ?>
+@endforeach
+
+<hr>
+
 <!-- the comment box -->
 <div class="well" id="comment-form">
     <h4>留言:</h4>
@@ -35,7 +56,7 @@
         <div class="form-group">
             <label for="inputComment" class="col-sm-2 control-label">内容(必填):</label>
             <div class="col-sm-10">
-                <textarea class="form-control" name="content" id="inputComment" rows="5" required></textarea>
+                <textarea class="form-control" name="content" id="inputComment" rows="10" required></textarea>
             </div>
         </div>
         <div class="form-group">
@@ -45,27 +66,6 @@
         </div>
     </form>
 </div>
-
-<hr>
-
-<!-- the comments -->
-
-<?php $count=1?>
-@foreach( $post->comments as $comment)
-<div class="well">
-  <div class="act">
-    <a href="#">回复</a>｜<a href="#comment-form" onclick="quote('{{ $comment->id }}', '{{ $comment->author }}'); return true">引用</a>
-  </div>
-  <div class="info">
-      <div class="author"> {{ $comment->author }} </div>
-      <div class="date"> <small>{{ $comment->created_at }}|#{{ $count }}</small> </div>
-  </div>
-  <div class="comment" id="comment-{{ $comment->id }}">
-    <p>{{ $comment->content }}</p>
-  </div>
-</div>
-<?php $count++ ?>
-@endforeach
 
 <script>
   $().ready(function() {
