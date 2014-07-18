@@ -19,7 +19,7 @@
     $().ready(function() {
       var converter = new Showdown.converter();
       var preview = document.getElementsByClassName('rendered-content')[0];
-      var string = hereDoc(function () {/*{{ $posts->first()->markdown}}*/});
+      var string = hereDoc(function () {/*{{ $posts->first()->markdown or ''}}*/});
       preview.innerHTML = converter.makeHtml(string);
       $('ul.list-group.post-list').find('li').first().addClass('active');
 
@@ -91,7 +91,7 @@
             </div>
             <div class="col-xs-9">
                 <div class="content-option">
-                    <a href="admin/editor/{{ $posts->first()->id }}"><span class="glyphicon glyphicon-edit"></span></a>
+                    <a href="admin/editor/{{ $posts->first()->id or ''}}"><span class="glyphicon glyphicon-edit"></span></a>
                 </div>
                 <div class="rendered-content">
                 </div>
