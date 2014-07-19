@@ -10,6 +10,7 @@
 
   {{ HTML::style("css/bootstrap.css") }}
   {{ HTML::style("css/bootstrap-social.css") }}
+  {{ HTML::style("css/basic.css") }}
 
 	<!-- Ghosty-ness markdowny-ness -->
   {{ HTML::script("js/ghostdown.js") }}

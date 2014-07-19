@@ -21,6 +21,7 @@
     <!-- Add custom CSS here -->
     {{ HTML::style("css/blog-home.css") }}
     {{ HTML::style("css/blog-post.css") }}
+    {{ HTML::style("css/basic.css") }}
 </head>
 
 <body>
