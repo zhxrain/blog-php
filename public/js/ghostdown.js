@@ -7661,7 +7661,7 @@ Showdown.converter = function(a) {
 				n = b[m], c[m] != undefined && (o = c[m])
 			}
 			l = l.replace(/"/g, "&quot;"), n = N(n, "*_");
-			var p = '<img src="/' + n + '" alt="' + l + '"';
+			var p = '<img src="' + n + '" alt="' + l + '"';
 			return o = o.replace(/"/g, "&quot;"), o = N(o, "*_"), p += ' title="' + o + '"', p += " />", p
 		},
 		v = function(a) {
@@ -7881,7 +7881,7 @@ Showdown.converter = function(a) {
 								editor.setValue( newMarkdown );
 
 							// Set image instead of placeholder
-							holderP.removeClass("dropzone").html('<img src="/'+ response.path +'"/>');
+							holderP.removeClass("dropzone").html('<img src="'+ response.path +'"/>');
 						}
 					}).addClass("dropzone");
 				}());
