@@ -149,6 +149,14 @@ class PostController extends \BaseController {
 	public function destroy($id)
 	{
 		//
+    if(Auth::check()){
+      $post = Post::find($id);
+      $post->comments()->delete();
+      $post->delete();
+      return Response::json('success', 200);
+    }
+    return Redirect::to('admin/login')
+      ->with('error', "Please login at first.");
 	}
 
   public function search()
@@ -171,12 +179,13 @@ class PostController extends \BaseController {
     $file = Input::file('file'); // your file upload input field in the form should be named 'file'
 
     $destinationPath = 'uploads/'.str_random(8);
+    Debugbar::error($destinationPath);
     $filename = $file->getClientOriginalName();
     //$extension =$file->getClientOriginalExtension(); //if you need extension of the file
-    $uploadSuccess = Input::file('file')->move($destinationPath, $filename);
+    $uploadSuccess = Input::file('file')->move('public/'.$destinationPath, $filename);
 
     if( $uploadSuccess ) {
-      return Response::json(array('path' => $destinationPath.'/'.$filename), 200); // or do a redirect with some message that file was uploaded
+      return Response::json(array('path' => '/'.$destinationPath.'/'.$filename), 200); // or do a redirect with some message that file was uploaded
     } else {
       return Response::json('error', 400);
     }
