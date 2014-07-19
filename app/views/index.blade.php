@@ -7,6 +7,7 @@
   {{ HTML::script("js/bootstrap.js") }}
   {{ HTML::script("js/ghostdown.js") }}
   {{ HTML::script("js/basic.js") }}
+  {{ HTML::script("js/bootbox.js") }}
   <!-- Bootstrap core CSS -->
   {{ HTML::style("css/bootstrap.css") }}
 
@@ -14,6 +15,7 @@
   {{ HTML::style("css/blog-home.css") }}
 
   {{ HTML::style("css/main.css") }}
+  {{ HTML::style("css/basic.css") }}
 
   <script>
     $().ready(function() {
@@ -29,14 +31,41 @@
         var id = parseInt($(this).attr("id"));
         $('ul.list-group.post-list').find('li').removeClass('active');
         $(this).addClass('active');
-        @foreach($posts as $post)
-        if(id == {{ $post->id }})
-          var string = hereDoc(function () {/*{{ $post->markdown }}*/});
-        @endforeach
-        preview.innerHTML = converter.makeHtml(string);
-        $('.content-option a').attr('href','admin/editor/'+id);
+        $.ajax({
+          url: 'api/v1/post/' + id,
+          type: 'GET',
+          success: function(responseText, status){
+            var string = hereDoc( responseText.markdown );
+            preview.innerHTML = converter.makeHtml(string);
+          },
+          error: function(request, status){
+            bootbox.alert("Get post error!", function() {
+            });
+          }
+        });
+        $('#post-edit').attr('href','admin/editor/' + id);
+        $('#post-delete').attr('href','javascript:deletePost(' + id + ')');
       });
     });
+
+    function deletePost(id)
+    {
+      bootbox.confirm("Are you sure?", function(result) {
+        if(result == true) {
+          $.ajax({
+            url: 'posts/' + id,
+            type: 'DELETE',
+            success: function(response, status){
+              location.reload();
+            },
+            error: function(request, status){
+              bootbox.alert("Delete post error!", function() {
+              });
+            }
+          });
+        }
+      });
+    }
   </script>
 </head>
 <body>
@@ -91,7 +120,10 @@
             </div>
             <div class="col-xs-9">
                 <div class="content-option">
-                    <a href="admin/editor/{{ $posts->first()->id or ''}}"><span class="glyphicon glyphicon-edit"></span></a>
+                    @if($posts->count() != 0)
+                    <a id="post-edit" href="admin/editor/{{ $posts->first()->id }}"><span class="glyphicon glyphicon-edit"></span></a>
+                    <a id="post-delete" href="javascript:deletePost({{ $posts->first()->id }})"><span class="glyphicon glyphicon-remove-circle"></span></a>
+                    @endif
                 </div>
                 <div class="rendered-content">
                 </div>
