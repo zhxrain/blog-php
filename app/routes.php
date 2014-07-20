@@ -10,6 +10,12 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
+App::missing(function($exception)
+{
+  // shows an error page (app/views/error.blade.php)
+  // returns a page not found error
+  return Response::view('errors.404', array(), 404);
+});
 
 Route::get('/', 'HomeController@showIndex');
 

@@ -120,7 +120,7 @@ class PostAdminController extends \BaseController {
       $post = Post::where('id', $id)
         ->first();
       if($post->author != Auth::user()->name)
-        return Response::view('errors.missing', array(), 404);
+        return Response::view('errors.404', array(), 404);
       return View::make('editor', array('post' => $post));
     }
     else
